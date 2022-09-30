@@ -1,24 +1,38 @@
-import React from 'react';
-import { SafeAreaView, Text, StyleSheet, FlatList, View } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, FlatList, View } from 'react-native';
 import music_data from './music_data.json';
 import SongCard from './components/SongCard';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
+
+  const [list, setList] = useState(music_data);
 
   const renderSong = ({ item }) => <SongCard song={item} />
 
   const renderSeperator = () => <View style={styles.seperator} />
 
+  /* şarkı ismine göre arama eklendi */
+  const onSearch = (text) => {
+    const filteredList = music_data.filter(song => {
+      const searchedText = text.toLowerCase();
+      const currentTitle = song.title.toLowerCase();
+
+      return currentTitle.indexOf(searchedText) > -1;
+    })
+
+    setList(filteredList);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <FlatList
-          keyExtractor={(item) => item.id}
-          data={music_data}
-          renderItem={renderSong}
-          ItemSeparatorComponent={renderSeperator}
-        />
-      </View>
+      <SearchBar handleSearch={onSearch} />
+      <FlatList
+        keyExtractor={(item) => item.id}
+        data={list}
+        renderItem={renderSong}
+        ItemSeparatorComponent={renderSeperator}
+      />
     </SafeAreaView>
   )
 }
