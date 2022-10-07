@@ -14,7 +14,8 @@ function MemberSign({ navigation }) {
     const handleSubmit = () => {
 
         if (!userName || !userSurName || !userAge || !userMail || !userHome) {
-            Alert.alert("Fitness App", "Bilgiler Boş Bırakılamaz!!")
+            Alert.alert("Fitness App", "Bilgiler Boş Bırakılamaz!!");
+            return;
         }
 
         const userInfo = {

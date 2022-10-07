@@ -2,14 +2,17 @@ import React from 'react'
 import { SafeAreaView, Text } from 'react-native';
 
 const MemberResult = ({ route }) => {
-    console.log(route);
+
+    let { userInfo } = route.params
+
     return (
         <SafeAreaView>
-            <Text>Üye Adı : </Text>
-            <Text>Üye Soyadı : </Text>
-            <Text>Üye Yaşı : </Text>
-            <Text>Üye E-posta : </Text>
-            <Text>Üye Memleket : </Text>
+            <Text>Kayıt Tamamlandı!</Text>
+            <Text>Üye Adı : {userInfo.userName}</Text>
+            <Text>Üye Soyadı :  {userInfo.userSurName}</Text>
+            <Text>Üye Yaşı : {userInfo.userAge}</Text>
+            <Text>Üye E-posta : {userInfo.userMail} </Text>
+            <Text>Üye Memleket :  {userInfo.userHome}</Text>
         </SafeAreaView>
     )
 }
