@@ -11,8 +11,26 @@ function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name='ProductPage' component={Product} />
-                <Stack.Screen name='DetailPage' component={Detail} />
+                <Stack.Screen
+                    name='ProductPage'
+                    component={Product}
+                    options={
+                        {
+                            title: 'Dükkan',
+                            headerStyle: { backgroundColor: '#4267B2' },
+                            headerTitleStyle: { color: 'white' }
+                        }} />
+                <Stack.Screen
+                    name='DetailPage'
+                    component={Detail}
+                    options={
+                        {
+                            title: 'Detaylar',
+                            headerStyle: { backgroundColor: '#4267B2' },
+                            headerTitleStyle: { color: 'white' },
+                            headerTintColor : 'white'
+                        }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )
