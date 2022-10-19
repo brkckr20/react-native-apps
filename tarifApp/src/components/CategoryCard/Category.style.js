@@ -8,12 +8,13 @@ export default StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         borderWidth : 1,
-        borderColor : "grey"
+        borderColor : "grey",
+        marginBottom : 5
     },
     image: {
         width: 50,
         height: 50,
-        resizeMode : 'contain'
+        resizeMode : 'contain',
     },
     category_name : {
         color : "black",

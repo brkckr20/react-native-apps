@@ -3,6 +3,8 @@ import { Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Category from './screens/Category';
+import Detail from './screens/Detail';
+import MealDetail from './screens/MealDetail';
 
 const Router = () => {
 
@@ -10,12 +12,39 @@ const Router = () => {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{
-                headerShown: false
-            }}>
+            <Stack.Navigator>
                 <Stack.Screen
                     name='CategoryScreen'
                     component={Category}
+                    options={{
+                        headerShown : false
+                    }}
+                />
+                <Stack.Screen
+                    name='DetailScreen'
+                    component={Detail}
+                    options={{
+                        title : "Meals",
+                        headerTintColor : "#FFA500",
+                        headerTitleStyle : {
+                            color : "#FFA500",
+                        }
+                        
+                    }}
+
+                />
+                <Stack.Screen
+                    name='MealDetailScreen'
+                    component={MealDetail}
+                    options={{
+                        title : "Details",
+                        headerTintColor : "#FFA500",
+                        headerTitleStyle : {
+                            color : "#FFA500",
+                        }
+                        
+                    }}
+
                 />
             </Stack.Navigator>
         </NavigationContainer>

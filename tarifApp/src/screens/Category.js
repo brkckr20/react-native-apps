@@ -2,13 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import CategoryCard from '../components/CategoryCard/CategoryCard';
 import useFetch from '../hooks/useFetch'
-import { Config } from '../config/Config'
 
-const Category = () => {
+const Category = ({ navigation }) => {
 
     const { data, error, loading } = useFetch("https://www.themealdb.com/api/json/v1/1/categories.php");
 
-    const renderCategoryList = ({item}) => <CategoryCard items={item}/>
+
+    const renderCategoryList = ({ item }) => <CategoryCard items={item} onSelect={() => handleSelect(item.strCategory)} />
+
+    const handleSelect = (category) => {
+        navigation.navigate('DetailScreen', { category });
+    }
 
     if (loading) {
         return (
@@ -22,7 +26,7 @@ const Category = () => {
                 <Text style={styles.header_title}>Categories</Text>
             </View>
             <View style={styles.categories_container}>
-                <FlatList data={data} renderItem={renderCategoryList} />
+                <FlatList data={data.categories} renderItem={renderCategoryList} />
             </View>
         </View>
     )
