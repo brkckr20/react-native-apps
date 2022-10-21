@@ -1,10 +1,14 @@
 import React from 'react'
-import { View,Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
+import { useSelector } from 'react-redux'
 
 const Secondary = () => {
+  const list = useSelector(s => s.nameList);
+  const myUsername = useSelector(s => s.username);
   return (
     <View>
-        <Text>Secondary</Text>
+      <Text style={{ fontSize: 30, color : "black" }}>Username : {myUsername} </Text>
+      <FlatList keyExtractor={(_, i) => i.toString()} data={list} renderItem={({ item }) => <Text>{item}</Text>} />
     </View>
   )
 }
