@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, FlatList, ActivityIndicator, Text } from 'react-native';
+import { SafeAreaView, FlatList, Button, Text } from 'react-native';
 import Config from 'react-native-config';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
@@ -7,10 +7,12 @@ import Loading from '../../components/Loading';
 import ProductCard from '../../components/ProductCard';
 import useFetch from '../../hooks/useFetch/useFetch';
 import SelectBox from '../../components/SelectBox/SelectBox';
+import { useDispatch } from 'react-redux';
 
 const Product = ({ navigation }) => {
 
     const { data, error, loading } = useFetch(Config.API_URL)
+    const dispatch = useDispatch();
 
     const handleSelectProduct = (id) => {
         navigation.navigate('DetailPage', { id });
@@ -32,7 +34,8 @@ const Product = ({ navigation }) => {
 
     return (
         <SafeAreaView>
-            <SelectBox setFilteredText={setFilteredText}/>
+            <Button title='Logout' onPress={() => dispatch({ type: "SET_USER", payload: { user: null } })} />
+            <SelectBox setFilteredText={setFilteredText} />
             <FlatList data={filteredText ? filterData : data} renderItem={renderProduct} />
         </SafeAreaView>
     )

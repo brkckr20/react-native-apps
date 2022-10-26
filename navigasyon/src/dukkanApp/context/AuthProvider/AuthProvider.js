@@ -1,7 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { legacy_createStore as createStore } from 'redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducers from './reducers';
 
 const AuthProvider = ({ children }) => {
@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         /* async await kullanılamaz */
         AsyncStorage.getItem("@USER").then(userSession => {
-            userSession && setUser(JSON.parse(userSession))
+            userSession && setUser(JSON.parse(userSession));
             setIsAuthLoading(false);
         });
 
