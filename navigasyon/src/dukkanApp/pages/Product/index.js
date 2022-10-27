@@ -34,7 +34,6 @@ const Product = ({ navigation }) => {
 
     return (
         <SafeAreaView>
-            <Button title='Logout' onPress={() => dispatch({ type: "SET_USER", payload: { user: null } })} />
             <SelectBox setFilteredText={setFilteredText} />
             <FlatList data={filteredText ? filterData : data} renderItem={renderProduct} />
         </SafeAreaView>

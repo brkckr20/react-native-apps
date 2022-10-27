@@ -5,14 +5,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Product from './pages/Product';
 import Detail from './pages/Detail';
 import Login from './pages/Login/Login';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading from './components/Loading';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createNativeStackNavigator();
 
 function Router() {
     const userSession = useSelector(s => s.user)
-    const isAuthLoading = useSelector(s => s.isAuthLoading)
+    const isAuthLoading = useSelector(s => s.isAuthLoading);
+    const dispatch = useDispatch();
 
     return (
         <NavigationContainer>
@@ -39,7 +41,10 @@ function Router() {
                                     {
                                         title: 'Dükkan',
                                         headerStyle: { backgroundColor: '#4267B2' },
-                                        headerTitleStyle: { color: 'white' }
+                                        headerTitleStyle: { color: 'white' },
+                                        headerRight: () => {
+                                            return <Icon name='logout' size={20} color="white" onPress={() => dispatch({ type: "REMOVE_USER" })} />
+                                        }
                                     }} />
                             <Stack.Screen
                                 name='DetailPage'

@@ -10,6 +10,7 @@ export default StyleSheet.create({
         alignItems: "center"
     },
     input: {
-        flex: 1
+        flex: 1,
+        color: "black"
     }
 })
