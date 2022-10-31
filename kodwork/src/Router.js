@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { colors } from './utils/colors';
-import HeaderBar from './components/HeaderBar';
 
+// components import
+import HeaderBar from './components/HeaderBar';
 //pages imports
 import Home from './pages/Home';
 

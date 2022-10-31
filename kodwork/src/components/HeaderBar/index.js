@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         color: colors.mainPink,
         fontSize: 20,
         fontWeight: 'bold',
-        paddingLeft: Dimensions.get("window").width / 2.62
+        paddingLeft: Dimensions.get("window").width / 2.5,
     }
 })
 
