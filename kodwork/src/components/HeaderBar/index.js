@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../utils/colors'
+import { View, Text, StyleSheet } from 'react-native';
+import { colors } from '../../utils/colors';
+import { useSelector } from 'react-redux';
 
 function HeaderBar() {
+    const { selectedJob } = useSelector(state => state.job)
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Jobs</Text>
+            <Text style={styles.title}>Jobs {`${selectedJob ? ' | ' + selectedJob : ''}`}</Text>
         </View>
     )
 }
@@ -19,7 +21,6 @@ const styles = StyleSheet.create({
         color: colors.mainPink,
         fontSize: 20,
         fontWeight: 'bold',
-        paddingLeft: Dimensions.get("window").width / 2.5,
     }
 })
 
