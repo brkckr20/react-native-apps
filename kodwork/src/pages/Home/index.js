@@ -7,13 +7,11 @@ import useFetch from '../../hooks/useFetch';
 import Loading from '../../components/Loading'
 import JobCard from '../../components/JobCard'
 import { config } from '../../config'
+import styles from './Home.style'
 
 function Home({ navigation }) {
     const { data, error, loading } = useFetch(config.API_URL);
     const dispatch = useDispatch();
-    if (loading) {
-        <Loading />
-    }
 
     if (error) {
         <Text>Bir hata oluştu!</Text>
@@ -33,7 +31,12 @@ function Home({ navigation }) {
 
     return (
         <View style={{ flex: 1 }}>
-            <FlatList data={data.results} renderItem={renderJobs} />
+            <View>
+                <Text style={styles.header}>Jobs</Text>
+            </View>
+            {
+                loading ? (<Loading />) : (<FlatList style={{ marginTop: 5 }} data={data.results} renderItem={renderJobs} />)
+            }
         </View>
     )
 }

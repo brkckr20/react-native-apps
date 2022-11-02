@@ -9,6 +9,7 @@ import HeaderBar from './components/HeaderBar';
 //pages imports
 import Home from './pages/Home';
 import Detail from './pages/Detail';
+/* utils */
 import { colors } from './utils/colors';
 
 const Stack = createNativeStackNavigator();
@@ -18,12 +19,14 @@ const Router = () => {
         <Provider store={store}>
             <NavigationContainer>
                 <Stack.Navigator>
-                    <Stack.Screen name='HomeScreen' component={Home} options={{ headerTitle: (props) => <HeaderBar {...props} /> }} />
-                    <Stack.Screen name='DetailScreen' component={Detail}
-                        options={{
-                            headerTintColor: colors.mainPink,
-                            headerTitle: (props) => <HeaderBar {...props} />
-                        }} />
+                    <Stack.Screen name='HomeScreen' component={Home} options={{
+                        headerShown: false
+                    }} /* options={{ headerTitle: (props) => <HeaderBar {...props} /> }} */ />
+                    <Stack.Screen name='DetailScreen' component={Detail} options={{
+                        headerTintColor: colors.mainPink,
+                        headerTitle: (props) => <HeaderBar {...props} />
+                    }} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>

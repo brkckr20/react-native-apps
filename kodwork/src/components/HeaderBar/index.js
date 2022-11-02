@@ -7,7 +7,7 @@ function HeaderBar() {
     const { selectedJob } = useSelector(state => state.job)
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Jobs {`${selectedJob ? ' | ' + selectedJob : ''}`}</Text>
+            <Text style={styles.title}>{`${selectedJob ? selectedJob : ''}`}</Text>
         </View>
     )
 }
