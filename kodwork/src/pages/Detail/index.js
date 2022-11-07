@@ -7,6 +7,8 @@ import styles from './Detail.style';
 import { useWindowDimensions } from 'react-native';
 import RenderHtml from 'react-native-render-html';
 import Button from '../../components/Button';
+import { useDispatch } from 'react-redux';
+import { addFavorite } from '../../redux/job/jobSlice'
 
 const Detail = ({ route }) => {
     const { id } = route.params;
@@ -15,6 +17,13 @@ const Detail = ({ route }) => {
         html: `${data.contents}`
     };
     const { width } = useWindowDimensions();
+
+    const dispatch = useDispatch();
+
+    function addToFavorite(item) {
+        dispatch(addFavorite(item))
+    }
+
     return (
         <View>
             {
@@ -33,8 +42,8 @@ const Detail = ({ route }) => {
                             </View>
 
                             <View style={styles.button_container}>
-                                <Button buttonText="Submit" iconName="login"/>
-                                <Button buttonText="Favorite Jobs" iconName="cards-heart"/>
+                                <Button buttonText="Submit" iconName="login" />
+                                <Button buttonText="Favorite Jobs" iconName="cards-heart" onPress={() => addToFavorite(data)} />
                             </View>
                         </ScrollView>
                     </>
