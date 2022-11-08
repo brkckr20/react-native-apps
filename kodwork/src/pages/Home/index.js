@@ -14,7 +14,7 @@ function Home({ navigation }) {
     const dispatch = useDispatch();
 
     if (error) {
-        <Text>Bir hata oluştu!</Text>
+        <Text>Bir hata oluştu!</Text> 
     }
 
     function handleSelect(id, name) {
