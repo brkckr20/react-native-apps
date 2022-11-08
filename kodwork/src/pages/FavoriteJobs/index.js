@@ -1,16 +1,32 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import styles from './FavoriteJobs.style';
 import { useSelector } from 'react-redux';
+import JobCard from '../../components/JobCard';
 
 const FavoriteJobs = () => {
+
+    const [isRemoveBtn, setIsRemoveBtn] = React.useState(true);
+
     const { favoriteJobs } = useSelector(state => state.job);
 
-    console.log("favoriteJobs",favoriteJobs)
+    const renderJobs = ({ item }) => {
+        return (
+            <JobCard item={item} isRemoveBtn={isRemoveBtn} />
+        )
+    }
     return (
-        <View>
-            <Text style={styles.title}>FavoriteJobs</Text>
-        </View>
+        <>
+            {
+                favoriteJobs.length > 0
+                    ? (<FlatList data={favoriteJobs} renderItem={renderJobs} />)
+                    : (
+                        <View>
+                            <Text style={styles.title}>You don't have any favorite job postings.</Text>
+                        </View>
+                    )
+            }
+        </>
     )
 }
 

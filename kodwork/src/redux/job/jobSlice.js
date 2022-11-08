@@ -12,11 +12,17 @@ const jobSlice = createSlice({
         },
         addFavorite: (state, action) => {
             state.favoriteJobs.push(action.payload)
+        },
+        removeFavorite: (state, action) => {
+            state.favoriteJobs = state.favoriteJobs.filter(item => {
+                return item.id !== action.payload;
+            });
         }
+
     },
     extraReducers: {}
 })
 
-export const { changeJob, addFavorite } = jobSlice.actions
+export const { changeJob, addFavorite, removeFavorite } = jobSlice.actions
 
 export default jobSlice.reducer

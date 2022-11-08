@@ -34,6 +34,15 @@ export default StyleSheet.create({
         color: colors.mainPink,
         fontWeight: "bold",
         textAlign: "right"
+    },
+    remove_btn_container : {
+        backgroundColor : colors.mainPink,
+        borderRadius : 5,
+        marginTop : 10
+    },
+    removeBtn : {
+        color : colors.white,
+        textAlign : "center",
+        paddingVertical : 5,
     }
-
 })
