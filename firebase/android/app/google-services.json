@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123564503369",
+    "project_id": "patika-ed245",
+    "storage_bucket": "patika-ed245.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123564503369:android:9a0b4daeea67c31704aa98",
+        "android_client_info": {
+          "package_name": "com.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123564503369-2ehtr99mt78pc2qf6vtai83l2lb48jfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Q5kJHJUgfm0RTnTi6kM8Fh-XlRZOYm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123564503369-2ehtr99mt78pc2qf6vtai83l2lb48jfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
