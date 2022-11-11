@@ -1,6 +1,9 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Formik } from 'formik';
+import auth from '@react-native-firebase/auth';
+import { showMessage } from 'react-native-flash-message';
+import authErrorMessageParser from '../../utils/authErrorMessageParser';
 
 const initialFormValues = {
     usermail: "",
@@ -8,12 +11,25 @@ const initialFormValues = {
 }
 
 function Login({ navigation }) {
+    const [loading, setLoading] = useState(false);
     function handleSign() {
         navigation.navigate("SingPage");
     }
 
-    function handleFormSubmit(formValues) {
-        console.log(formValues)
+    async function handleFormSubmit(formValues) {
+        try {
+            setLoading(true)
+            await auth().signInWithEmailAndPassword(formValues.usermail, formValues.password);
+            setLoading(false);
+            navigation.navigate("MessagesPage")
+        } catch (error) {
+            setLoading(false);
+            showMessage({
+                message: authErrorMessageParser(error.code),
+                type: "danger"
+            })
+            console.log(error)
+        }
     }
 
     return (
@@ -23,10 +39,12 @@ function Login({ navigation }) {
                 {
                     ({ handleChange, values, handleSubmit }) => (
                         <>
-                            <TextInput value={values.usermail} onChangeText={handleChange('usermail')} style={styles.input} placeholder='E-postanızı giriniz' placeholderTextColor="gray" />
-                            <TextInput value={values.password} onChangeText={handleChange('password')} style={styles.input} placeholder='Şifrenizi giriniz' placeholderTextColor="gray" />
+                            <TextInput autoCapitalize='none' value={values.usermail} onChangeText={handleChange('usermail')} style={styles.input} placeholder='E-postanızı giriniz' placeholderTextColor="gray" />
+                            <TextInput autoCapitalize='none' secureTextEntry={true} value={values.password} onChangeText={handleChange('password')} style={styles.input} placeholder='Şifrenizi giriniz' placeholderTextColor="gray" />
                             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                                <Text style={styles.button_text}>Giriş Yap</Text>
+                                {
+                                    loading ? (<ActivityIndicator size={20} color="white" />) : <Text style={styles.button_text}>Giriş Yap</Text>
+                                }
                             </TouchableOpacity>
                         </>
                     )

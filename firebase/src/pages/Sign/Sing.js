@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
+import auth from '@react-native-firebase/auth';
+
+import { showMessage } from 'react-native-flash-message';
+import authErrorMessageParser from '../../utils/authErrorMessageParser';
 
 const initialFormValues = {
     usermail: "",
@@ -9,12 +13,31 @@ const initialFormValues = {
 }
 
 function Sign({ navigation }) {
+    const [loading, setLoading] = useState(false);
 
     function handleLogin() {
         navigation.goBack();
     }
 
-    function handleFormSubmit(formValues) {
+    async function handleFormSubmit(formValues) {
+        if (formValues.password !== formValues.repassword) {
+            showMessage({
+                message: "Şifreler uyuşmuyor!",
+                type: "danger"
+            });
+            return;
+        }
+        try {
+            await auth().createUserWithEmailAndPassword(formValues.usermail, formValues.password);
+            showMessage({
+                message: "Kullanıcı oluşturuldu",
+                type: "success"
+            })
+            navigation.navigate("LoginPage")
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+        }
         console.log("first", formValues)
     }
 
@@ -25,9 +48,9 @@ function Sign({ navigation }) {
                 {
                     ({ values, handleChange, handleSubmit }) => (
                         <>
-                            <TextInput value={values.usermail} onChangeText={handleChange('usermail')} style={styles.input} placeholder='E-postanızı giriniz' placeholderTextColor="gray" />
-                            <TextInput value={values.password} onChangeText={handleChange('password')} style={styles.input} placeholder='Şifrenizi giriniz' placeholderTextColor="gray" />
-                            <TextInput value={values.repassword} onChangeText={handleChange('repassword')} style={styles.input} placeholder='Şifrenizi tekrar giriniz' placeholderTextColor="gray" />
+                            <TextInput autoCapitalize='none' value={values.usermail} onChangeText={handleChange('usermail')} style={styles.input} placeholder='E-postanızı giriniz' placeholderTextColor="gray" />
+                            <TextInput secureTextEntry={true} autoCapitalize='none' value={values.password} onChangeText={handleChange('password')} style={styles.input} placeholder='Şifrenizi giriniz' placeholderTextColor="gray" />
+                            <TextInput secureTextEntry={true} autoCapitalize='none' value={values.repassword} onChangeText={handleChange('repassword')} style={styles.input} placeholder='Şifrenizi tekrar giriniz' placeholderTextColor="gray" />
                             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                                 <Text style={styles.button_text}>Kayıt ol</Text>
                             </TouchableOpacity>
