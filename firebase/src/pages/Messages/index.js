@@ -14,17 +14,11 @@ function Messages() {
     const [inputModalVisible, setInputModalVisible] = React.useState(false);
     const [contentList, setContentList] = React.useState([]);
 
-
-
     React.useEffect(() => {
         database().ref("messages/").on('value', snapshot => {
             const contentData = snapshot.val();
-            if (!contentData) {
-                return;
-            }
-            const parsedData = parseContentData(contentData);
+            const parsedData = parseContentData(contentData || {});
             setContentList(parsedData)
-
         })
     }, [])
 
@@ -38,6 +32,7 @@ function Messages() {
             text: content,
             username: userMail.split("@")[0],
             date: new Date().toISOString(),
+            dislike: 0
         }
 
         database().ref("messages/").push(contentObject)
@@ -49,8 +44,12 @@ function Messages() {
 
     }
 
+    function handleBanane(item) {
+        database().ref(`messages/${item.id}/`).update({ dislike: item.dislike + 1 })
+    }
+
     function renderContent({ item }) {
-        return <MessageCard messages={item} />
+        return <MessageCard messages={item} onBanane={() => handleBanane(item.id)} />
     }
 
     return (

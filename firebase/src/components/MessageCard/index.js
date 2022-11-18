@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { formatDistance, parseISO } from 'date-fns'
 import { tr } from 'date-fns/locale'
 
 const green = "#007D72";
 
-const MessageCard = ({ messages }) => {
+const MessageCard = ({ messages, onBanane }) => {
 
     const formattedDate = formatDistance(parseISO(messages.date), new Date(), { addSuffix: true, locale: tr })
     return (
@@ -17,6 +17,16 @@ const MessageCard = ({ messages }) => {
             </View>
             <View>
                 <Text style={styles.text}>{messages.text}</Text>
+                <TouchableOpacity style={styles.btn} onPress={onBanane}>
+                    {
+                        !messages.dislike && (
+                            <View>
+                                <Text>{messages.dislike}</Text>
+                            </View>
+                        )
+                    }
+                    <Text style={styles.btn_text}>bana ne?</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -43,6 +53,18 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: "bold",
         color: "white"
+    },
+    btn: {
+        backgroundColor: "white",
+        maxWidth: 100,
+        justifyContent: "flex-end",
+        marginTop: 10,
+        borderRadius: 50
+
+    },
+    btn_text: {
+        color: green,
+        textAlign: "center",
     }
 })
 
