@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import Input from '../../components/Input';
 import styles from './Register.style';
 import { Button } from '../../components/Button'
+import { colors } from '../../colors';
 
 const Register = () => {
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor={colors.main_bg_orange} />
             <Text style={styles.banner}>
                 codetalks
             </Text>
