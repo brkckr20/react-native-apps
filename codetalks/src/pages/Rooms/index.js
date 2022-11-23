@@ -51,7 +51,7 @@ const rooms = [
 ];
 
 const Rooms = () => {
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false);
     const renderItem = ({ item }) => (
         <RoomCard item={item} />
     )
@@ -67,7 +67,7 @@ const Rooms = () => {
             </Text>
             <FlatList key={rooms.map(i => i.id)} style={styles.content} horizontal={false} numColumns={2} data={rooms} renderItem={renderItem} />
             <FloatingButton show={modalShow} />
-            <CustomModal visible={visible}>
+            <CustomModal visible={visible} modalShow={modalShow}>
                 <View style={{ flex: 1 }}>
                     <TextInput style={styles.input} placeholder="Oda adı.." placeholderTextColor="#ccc" />
                 </View>
