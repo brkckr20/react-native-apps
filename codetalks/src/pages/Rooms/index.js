@@ -1,57 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StatusBar, FlatList, TextInput } from 'react-native';
 import { colors } from '../../colors';
 import FloatingButton from '../../components/FloatingButton';
 import CustomModal from '../../components/Modal';
 import RoomCard from '../../components/RoomCard';
 import styles from './Rooms.style';
-import { Button } from '../../components/Button'
-
-const rooms = [
-    {
-        id: 1,
-        name: "Python"
-    },
-    {
-        id: 2,
-        name: "Unity"
-    },
-    {
-        id: 3,
-        name: "CSS"
-    },
-    {
-        id: 4,
-        name: "JS"
-    },
-    {
-        id: 5,
-        name: "CSS"
-    },
-    {
-        id: 6,
-        name: "JS"
-    },
-    {
-        id: 7,
-        name: "CSS"
-    },
-    {
-        id: 8,
-        name: "JS"
-    },
-    {
-        id: 9,
-        name: "JS"
-    },
-    {
-        id: 10,
-        name: "PHP"
-    }
-];
+import { Button } from '../../components/Button';
+import database from '@react-native-firebase/database';
+import parseData from '../../utils/parseData';
 
 const Rooms = () => {
     const [visible, setVisible] = useState(false);
+    const [roomName, setRoomName] = useState("");
+    const [roomList, setRoomList] = useState([]);
+
     const renderItem = ({ item }) => (
         <RoomCard item={item} />
     )
@@ -59,20 +21,39 @@ const Rooms = () => {
     const modalShow = () => {
         setVisible(!visible)
     }
+
+    const addRoom = async () => {
+        const contentObject = {
+            name: roomName
+        };
+        const reference = database().ref("rooms/");
+        reference.push(contentObject);
+        setRoomName("");
+        modalShow();
+    }
+
+    useEffect(() => {
+        database().ref("rooms/").on("value", snapshot => {
+            const roomsData = snapshot.val();
+            const parsedData = parseData(roomsData || {});
+            setRoomList(parsedData)
+        })
+    }, []);
+
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor={colors.text_color} />
             <Text style={styles.head}>
                 Odalar
             </Text>
-            <FlatList key={rooms.map(i => i.id)} style={styles.content} horizontal={false} numColumns={2} data={rooms} renderItem={renderItem} />
+            <FlatList key={roomList.map(i => i.id)} style={styles.content} horizontal={false} numColumns={2} data={roomList} renderItem={renderItem} />
             <FloatingButton show={modalShow} />
             <CustomModal visible={visible} modalShow={modalShow}>
                 <View style={{ flex: 1 }}>
-                    <TextInput style={styles.input} placeholder="Oda adı.." placeholderTextColor="#ccc" />
+                    <TextInput style={styles.input} value={roomName} onChangeText={setRoomName} placeholder="Oda adı.." placeholderTextColor="#ccc" />
                 </View>
                 <View>
-                    <Button variant="primary" buttonText="Ekle" onPress={modalShow} />
+                    <Button variant="primary" buttonText="Ekle" onPress={addRoom} />
                 </View>
             </CustomModal>
 
