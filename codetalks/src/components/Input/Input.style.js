@@ -6,6 +6,7 @@ export default StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "white",
         marginBottom: 10,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        color: "black"
     }
 })

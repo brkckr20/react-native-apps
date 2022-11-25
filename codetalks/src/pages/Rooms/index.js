@@ -9,14 +9,21 @@ import { Button } from '../../components/Button';
 import database from '@react-native-firebase/database';
 import parseData from '../../utils/parseData';
 
-const Rooms = () => {
+const Rooms = ({ navigation }) => {
     const [visible, setVisible] = useState(false);
     const [roomName, setRoomName] = useState("");
     const [roomList, setRoomList] = useState([]);
+    const [selectedRoom, setSelectedRoom] = useState("");
 
     const renderItem = ({ item }) => (
-        <RoomCard item={item} />
+        <RoomCard item={item} onPress={() => handleGoToRoom(item.name)} />
     )
+
+    const handleGoToRoom = (selectedRoom) => {
+        navigation.navigate("SingleRoom", { roomName: selectedRoom });
+        setSelectedRoom(selectedRoom);
+    }
+
 
     const modalShow = () => {
         setVisible(!visible)
