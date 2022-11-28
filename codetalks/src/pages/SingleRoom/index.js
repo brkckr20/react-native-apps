@@ -38,6 +38,10 @@ const SingleRoom = ({ navigation, route }) => {
         modalShow();
     }
 
+    const handleLogOut = () => {
+        auth().signOut();
+    }
+
     useEffect(() => {
         database().ref("messages/").on("value", snapshot => {
             const values = snapshot?.val();
@@ -55,7 +59,7 @@ const SingleRoom = ({ navigation, route }) => {
                     <Text style={styles.header_text}>Geri</Text>
                 </TouchableOpacity>
                 <Text style={styles.header_text}>{route.params.roomName.toLowerCase()}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleLogOut}>
                     <Text style={styles.header_text}>Çıkış</Text>
                 </TouchableOpacity>
             </View>
