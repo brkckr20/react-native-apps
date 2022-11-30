@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import Button from './index';
+import styles from './Button.style'
 
 test('should match with snapshot', () => {
     const comp = render(<Button />);
@@ -24,4 +25,18 @@ test('should trigger onPress', () => {
     fireEvent(buttonTouchable, "press");
 
     expect(mockFunction).toBeCalled();
+});
+
+//style testing
+test('should render default theme style', () => {
+    const comp = render(<Button />);
+    const buttonStyle = comp.getByTestId('button-touchable').props.style;
+    expect(buttonStyle).toMatchObject(styles.primary.container);
+})
+test('should render given theme style', () => {
+    const selectedTheme = "secondary";
+    const comp = render(<Button theme={selectedTheme} />);
+    const buttonStyle = comp.getByTestId('button-touchable').props.style;
+    expect(buttonStyle).toMatchObject(styles[selectedTheme].container);
+    //console.log(buttonStyle)
 })
