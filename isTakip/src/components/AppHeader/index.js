@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const AppHeader = ({ iconName, leftText, iconSize, iconColor, text, rightText }) => {
     return (
-        <View style={styles.container}>
+        <View style={!leftText && !rightText ? styles.container_login : styles.container}>
             {
                 iconName && (
                     <TouchableOpacity>

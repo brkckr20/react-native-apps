@@ -5,22 +5,23 @@ import { colors } from '../../assets/colors';
 import AppHeader from '../../components/AppHeader';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import styles from './Login.style';
+import styles from './Register.style';
 
-const Login = () => {
+const Register = () => {
     return (
         <View style={styles.container}>
-            <AppHeader text="Giriş Yap" iconSize={25} iconColor={colors.gray300} />
+            <AppHeader text="Kayıt Ol" iconName="close" iconSize={25} iconColor={colors.gray300} rightText="Giriş" />
             <View style={styles.content}>
                 <View style={styles.icon}>
-                    <Icon name='account' color={colors.main_green} size={100} />
+                    <Icon name='account-plus-outline' color={colors.main_green} size={100} />
                 </View>
                 <Input placeholder="Kullanıcı Adı" />
                 <Input placeholder="Şifre" isSecure={true} />
-                <Button buttonText="Giriş" />
+                <Input placeholder="Şifre Tekrar" isSecure={true} />
+                <Button buttonText="Gönder" />
             </View>
         </View>
     )
 }
 
-export default Login
+export default Register

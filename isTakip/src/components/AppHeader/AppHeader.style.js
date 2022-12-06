@@ -9,6 +9,13 @@ export default StyleSheet.create({
         marginBottom: 20,
         paddingTop: 20
     },
+    container_login: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 20,
+        paddingTop: 20
+    },
     headerText: {
         color: "black",
         fontSize: 26
