@@ -1,19 +1,24 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './AppHeader.style';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const AppHeader = ({ icon, leftText, text, rightText }) => {
+const AppHeader = ({ iconName, leftText, iconSize, iconColor, text, rightText }) => {
     return (
         <View style={styles.container}>
             {
-                icon && (
-                    <Text style={styles.icon}>{icon}</Text>
+                iconName && (
+                    <TouchableOpacity>
+                        <Icon name={iconName} size={iconSize} color={iconColor} />
+                    </TouchableOpacity>
                 )
             }
             <Text style={styles.headerText}>{text}</Text>
             {
                 rightText && (
-                    <Text style={styles.rightText}>{rightText}</Text>
+                    <TouchableOpacity>
+                        <Text style={styles.rightText}>{rightText}</Text>
+                    </TouchableOpacity>
                 )
             }
         </View>

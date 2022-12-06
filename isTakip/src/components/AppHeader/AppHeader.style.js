@@ -3,14 +3,15 @@ import { colors } from '../../assets/colors';
 
 export default StyleSheet.create({
     container: {
-        height: 36,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        marginBottom: 20,
+        paddingTop: 20
     },
     headerText: {
         color: "black",
-        fontSize: 30
+        fontSize: 26
     },
     icon: {
         color: colors.gray300,
