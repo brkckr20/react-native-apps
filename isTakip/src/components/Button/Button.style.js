@@ -3,7 +3,8 @@ import { colors } from '../../assets/colors'
 export default StyleSheet.create({
     container: {
         backgroundColor: colors.main_green,
-        borderRadius: 100
+        borderRadius: 100,
+        marginBottom: 8
     },
     text: {
         color: "white",

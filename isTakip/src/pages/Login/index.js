@@ -18,6 +18,7 @@ const Login = () => {
                 <Input placeholder="Kullanıcı Adı" />
                 <Input placeholder="Şifre" isSecure={true} />
                 <Button buttonText="Giriş" />
+                <Button buttonText="Kayıt Ol" />
             </View>
         </View>
     )
