@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import styles from './Login.style';
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <AppHeader text="Giriş Yap" iconSize={25} iconColor={colors.gray300} />
@@ -17,8 +17,7 @@ const Login = () => {
                 </View>
                 <Input placeholder="Kullanıcı Adı" />
                 <Input placeholder="Şifre" isSecure={true} />
-                <Button buttonText="Giriş" />
-                <Button buttonText="Kayıt Ol" />
+                <Button buttonText="Giriş" onPress={() => navigation.navigate("DashboardPage")} />
             </View>
         </View>
     )

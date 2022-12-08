@@ -3,7 +3,8 @@ import { colors } from "../../assets/colors";
 
 export default StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        marginHorizontal: 10
     },
     content: {
         flex: 1
@@ -16,7 +17,7 @@ export default StyleSheet.create({
         borderRadius: 4,
         alignItems: "center",
         paddingVertical: 12,
-        marginBottom: 5
+        marginBottom: 5,
     },
     settingsName: {
         color: "black"

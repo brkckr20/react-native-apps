@@ -7,14 +7,14 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         marginBottom: 20,
-        paddingTop: 20
+        paddingTop: 10
     },
     container_login: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         marginBottom: 20,
-        paddingTop: 20
+        paddingTop: 10
     },
     headerText: {
         color: "black",

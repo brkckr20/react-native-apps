@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../assets/colors';
 import AppHeader from '../../components/AppHeader';
@@ -9,7 +9,7 @@ const Settings = () => {
     const settingsValue = [
         {
             id: 1,
-            name: "Profil Ayarları",
+            name: "Hesap Ayarları",
             iconName: "account-cog-outline"
         },
         {
@@ -20,10 +20,10 @@ const Settings = () => {
     ]
 
     const renderItem = ({ item }) => (
-        <View style={styles.settingsContainer}>
+        <TouchableOpacity style={styles.settingsContainer}>
             <Icon name={item.iconName} size={50} color={colors.main_green} />
             <Text style={styles.settingsName}>{item.name}</Text>
-        </View>
+        </TouchableOpacity>
     )
 
     return (
