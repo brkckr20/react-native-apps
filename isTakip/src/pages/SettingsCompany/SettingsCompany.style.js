@@ -3,14 +3,8 @@ import { colors } from "../../assets/colors";
 
 export default StyleSheet.create({
     container: {
-
-    },
-    headerInfo: {
-        color: "black",
-        textAlign: "center",
-        fontSize: 20,
-        marginBottom: 8,
-        paddingVertical: 8
+        marginHorizontal: 10,
+        marginTop: 5
     },
     tableInfo: {
         color: "black",

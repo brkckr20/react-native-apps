@@ -17,7 +17,7 @@ const Login = ({ navigation }) => {
                 </View>
                 <Input placeholder="Kullanıcı Adı" />
                 <Input placeholder="Şifre" isSecure={true} />
-                <Button buttonText="Giriş" onPress={() => navigation.navigate("DashboardPage")} />
+                <Button buttonText="Giriş" onPress={() => navigation.navigate("RootPage")} />
             </View>
         </View>
     )

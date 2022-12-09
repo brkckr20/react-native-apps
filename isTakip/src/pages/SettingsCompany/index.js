@@ -7,7 +7,6 @@ import styles from './SettingsCompany.style'
 const SettingsCompany = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.headerInfo}>Firma Ayarları</Text>
             <View>
                 <Input placeholder="Firma Adı Giriniz..." />
             </View>

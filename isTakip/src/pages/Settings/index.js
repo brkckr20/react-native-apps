@@ -28,7 +28,6 @@ const Settings = () => {
 
     return (
         <View style={styles.container}>
-            <AppHeader text="Ayarlar" iconSize={25} iconColor={colors.gray300} />
             <View style={styles.content}>
                 <FlatList
                     key={settingsValue.map(i => i.id)}
