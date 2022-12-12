@@ -7,7 +7,8 @@ export default StyleSheet.create({
         marginHorizontal: 10
     },
     content: {
-        flex: 1
+        flex: 1,
+        marginTop: 5
     },
     settingsContainer: {
         borderWidth: 1,

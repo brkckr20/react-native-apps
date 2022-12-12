@@ -5,7 +5,7 @@ import { colors } from '../../assets/colors';
 import AppHeader from '../../components/AppHeader';
 import styles from './Settings.style';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
     const settingsValue = [
         {
             id: 1,
@@ -19,8 +19,19 @@ const Settings = () => {
         }
     ]
 
+    const goToSettingsDetail = (settingsName) => {
+        switch (settingsName) {
+            case "Hesap Ayarları":
+                navigation.navigate("SettingsAccount");
+            case "Firma Ayarları":
+                navigation.navigate("SettingsCompany");
+            default:
+                break;
+        }
+    }
+
     const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.settingsContainer}>
+        <TouchableOpacity style={styles.settingsContainer} onPress={() => goToSettingsDetail(item.name)}>
             <Icon name={item.iconName} size={50} color={colors.main_green} />
             <Text style={styles.settingsName}>{item.name}</Text>
         </TouchableOpacity>

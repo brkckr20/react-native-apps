@@ -1,14 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
+import styles from './DatePickerButton.style';
 
-import styles from './CompanyButtonCard.style'
-
-const CompanyButtonCard = ({ item, onPress }) => {
+const DatePickerButton = ({ onPress }) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
-            <Text style={styles.text}>{item.name}</Text>
+            <Text style={styles.text}>Tarih Seçiniz</Text>
         </TouchableOpacity>
     )
 }
 
-export default CompanyButtonCard;
+export default DatePickerButton;

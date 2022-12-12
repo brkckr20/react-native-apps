@@ -4,7 +4,7 @@ import CompanyButtonCard from '../../components/CompanyButtonCard';
 import DashboardCard from '../../components/DashboardCard';
 import styles from './Dashboard.style';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
 
     const companies = [
         {
@@ -25,8 +25,12 @@ const Dashboard = () => {
     ]
 
     const renderItem = ({ item }) => (
-        <CompanyButtonCard item={item} />
+        <CompanyButtonCard item={item} onPress={goToCompanyDetail} />
     )
+
+    const goToCompanyDetail = () => {
+        navigation.navigate("CompanyDetail");
+    }
 
     return (
         <View style={styles.container}>

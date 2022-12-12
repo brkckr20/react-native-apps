@@ -4,7 +4,7 @@ import { colors } from '../../assets/colors';
 export default StyleSheet.create({
     container: {
         borderWidth: 1,
-        borderColor: colors.border_color,
+        borderColor: colors.main_green,
         width: Dimensions.get("window").width / 2 - 12.5,
         marginRight: 5,
         borderRadius: 4,
@@ -13,6 +13,6 @@ export default StyleSheet.create({
         marginBottom: 5,
     },
     text: {
-        color: "black",
+        color: colors.main_green,
     }
 })
