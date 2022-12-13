@@ -2,9 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from './Button.style';
 
-const Button = ({ buttonText, onPress }) => {
-
-    const [loading, setLoading] = React.useState(false);
+const Button = ({ buttonText, onPress, loading }) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>

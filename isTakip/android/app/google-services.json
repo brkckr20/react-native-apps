@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "686844498344",
+    "project_id": "is-takip-73e3a",
+    "storage_bucket": "is-takip-73e3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686844498344:android:1c2de3ca88db0fa2958d9d",
+        "android_client_info": {
+          "package_name": "com.istakip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686844498344-71kgdom31rk12bbie69oob2gq485k97a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxu5ALfH1QSGRl-KusRAM7yo76S2MXg0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686844498344-71kgdom31rk12bbie69oob2gq485k97a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

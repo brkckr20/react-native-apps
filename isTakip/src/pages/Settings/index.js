@@ -2,8 +2,8 @@ import React from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../assets/colors';
-import AppHeader from '../../components/AppHeader';
 import styles from './Settings.style';
+import auth from '@react-native-firebase/auth';
 
 const Settings = ({ navigation }) => {
     const settingsValue = [
