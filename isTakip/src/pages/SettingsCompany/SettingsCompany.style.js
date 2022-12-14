@@ -14,5 +14,14 @@ export default StyleSheet.create({
         paddingVertical: 8,
         borderBottomWidth: 1,
         borderColor: colors.border_color
+    },
+    tableItem: {
+        color: "black",
+        backgroundColor: colors.gray300,
+        fontSize: 16,
+        marginBottom: 5,
+        padding: 8,
+        borderBottomWidth: 1,
+        borderColor: colors.border_color
     }
 });

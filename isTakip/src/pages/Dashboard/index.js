@@ -1,42 +1,38 @@
-import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { FlatList, View } from 'react-native';
 import CompanyButtonCard from '../../components/CompanyButtonCard';
 import DashboardCard from '../../components/DashboardCard';
 import styles from './Dashboard.style';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+import parsedData from '../../utils/parsedData';
 
 const Dashboard = ({ navigation }) => {
 
-    const companies = [
-        {
-            id: 1,
-            name: "Hambez",
-            slug: "hambez"
-        },
-        {
-            id: 2,
-            name: "Simteks",
-            slug: "simteks"
-        },
-        {
-            id: 3,
-            name: "Akman Tekstil",
-            slug: "akman-tekstil"
-        }
-    ]
+    const [companyList, setCompanyList] = useState([]);
+    const user = auth().currentUser.email;
+    useEffect(() => {
+        database().ref("company").on("value", snapshot => {
+            setCompanyList(parsedData(snapshot.val()).filter(item => item.user === user));
+        })
+    }, [])
 
     const renderItem = ({ item }) => (
-        <CompanyButtonCard item={item} onPress={goToCompanyDetail} />
+        <CompanyButtonCard item={item} onPress={() => goToCompanyDetail(item)} />
     )
 
-    const goToCompanyDetail = () => {
-        navigation.navigate("CompanyDetail");
+    const goToCompanyDetail = (params) => {
+        navigation.navigate("CompanyDetail", {
+            screen: 'GönderilenBez',
+            params: params
+        });
     }
 
     return (
         <View style={styles.container}>
             <FlatList
-                key={companies.map(i => i.id)}
-                data={companies}
+                key={companyList.map(i => i.id)}
+                data={companyList}
                 renderItem={renderItem}
                 horizontal={false}
                 numColumns={2}
@@ -44,7 +40,7 @@ const Dashboard = ({ navigation }) => {
             <View>
             </View>
             <View>
-                <DashboardCard count={companies.length} />
+                <DashboardCard count={companyList.length} />
             </View>
         </View>
     )

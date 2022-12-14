@@ -8,6 +8,7 @@ import { config } from '../config'
 import AddUser from "../pages/AddUser";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { View } from "react-native";
 
 
 const Drawer = createDrawerNavigator();
@@ -29,7 +30,7 @@ const DrawerNavigator = () => {
     const Logout = () => {
         return (
             <TouchableOpacity onPress={() => auth().signOut()} >
-                <Icon name="logout" color="red" size={30} style={{ marginRight: 10 }} />
+                <Icon name="exit-to-app" color={colors.main_green} size={30} style={{ marginRight: 10 }} />
             </TouchableOpacity>
         )
     }

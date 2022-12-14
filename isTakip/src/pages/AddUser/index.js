@@ -4,13 +4,17 @@ import { useFormik } from 'formik';
 import Input from '../../components/Input';
 import Button from '../../components/Button'
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 import errorMessageParser from '../../utils/errorMessageParser';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import styles from './AddUser.style';
+import UserList from './UserList';
+import parsedData from '../../utils/parsedData';
 
 const AddUser = () => {
 
     const [loading, setLoading] = useState(false);
+    const [userList, setUserList] = useState([]);
 
     const formik = useFormik({
         initialValues: {
@@ -28,6 +32,11 @@ const AddUser = () => {
             try {
                 setLoading(true)
                 await auth().createUserWithEmailAndPassword(values.email, values.password);
+                //users tablosuna kayıt işlemleri
+                await database().ref("users").push({
+                    email: values.email,
+                    password: values.password
+                })
                 showMessage({
                     message: "Kullanıcı oluşturuldu",
                     type: "success"
@@ -42,16 +51,23 @@ const AddUser = () => {
                 })
                 setLoading(false)
             }
-            console.log(values);
         },
     });
 
+
+    React.useEffect(() => {
+        const listenUserList = database().ref("users");
+        listenUserList.on("value", snapshot => {
+            setUserList(parsedData(snapshot.val()))
+        })
+    }, [])
 
     return (
         <View style={styles.container}>
             <Input placeholder="Kullanıcı E-mail adresi" value={formik.values.email} onChangeText={formik.handleChange("email")} autoCapitalize="none" />
             <Input placeholder="Kullanıcı Şifresi" value={formik.values.password} onChangeText={formik.handleChange("password")} autoCapitalize="none" />
             <Button buttonText="Kullancı Kaydet" onPress={formik.handleSubmit} loading={loading} />
+            <UserList userList={userList} />
             <FlashMessage position="top" />
         </View>
     )

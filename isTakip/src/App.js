@@ -14,7 +14,7 @@ import Root from './navigations/DrawerNavigator'
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-    const [userSession, setUserSession] = useState();
+    const [userSession, setUserSession] = useState("");
 
     useEffect(() => {
         auth().onAuthStateChanged((user) => {
@@ -34,8 +34,6 @@ const App = () => {
                         </>
                     )
                 }
-
-
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -13,11 +13,11 @@ const Tabs = () => {
         <Tab.Navigator screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
                 let iconName;
-                if (route.name === 'Gönderilen Bez') {
+                if (route.name === 'GönderilenBez') {
                     iconName = focused
                         ? 'animation-outline'
                         : 'animation-outline';
-                } else if (route.name === 'Alınan Para') {
+                } else if (route.name === 'AlinanPara') {
                     iconName = focused ? 'briefcase-variant-outline' : 'briefcase-variant-outline';
                 } else if (route.name === 'Bakiye') {
                     iconName = focused ? 'bitcoin' : 'bitcoin';
@@ -28,8 +28,8 @@ const Tabs = () => {
             tabBarInactiveTintColor: 'gray',
             headerShown: false,
         })}>
-            <Tab.Screen name="Gönderilen Bez" component={SendProduct} />
-            <Tab.Screen name="Alınan Para" component={ReceivedMoney} />
+            <Tab.Screen name="GönderilenBez" component={SendProduct} />
+            <Tab.Screen name="AlinanPara" component={ReceivedMoney} />
             <Tab.Screen name="Bakiye" component={Balance} />
         </Tab.Navigator>
     )

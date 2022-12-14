@@ -10,9 +10,9 @@ const DatePickerSelect = ({ open, setOpen, date, setDate }) => {
                 modal
                 open={open}
                 date={date}
-                onConfirm={(date) => {
+                onConfirm={(datex) => {
                     setOpen(false)
-                    setDate(date)
+                    setDate(datex);
                 }}
                 onCancel={() => {
                     setOpen(false)
