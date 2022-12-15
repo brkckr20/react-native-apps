@@ -7,11 +7,11 @@ import auth from '@react-native-firebase/auth';
 
 const Settings = ({ navigation }) => {
     const settingsValue = [
-        {
+        /* {
             id: 1,
             name: "Hesap Ayarları",
             iconName: "account-cog-outline"
-        },
+        }, */
         {
             id: 2,
             name: "Firma Ayarları",

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { colors } from "../../assets/colors";
 
 export default StyleSheet.create({
@@ -17,11 +17,19 @@ export default StyleSheet.create({
     },
     tableItem: {
         color: "black",
-        backgroundColor: colors.gray300,
         fontSize: 16,
-        marginBottom: 5,
         padding: 8,
-        borderBottomWidth: 1,
-        borderColor: colors.border_color
+        flex: 1
+    },
+    tableContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: colors.gray300,
+        marginBottom: 4,
+        borderRadius: 4
+    },
+    button: {
+        marginRight: 8
     }
 });

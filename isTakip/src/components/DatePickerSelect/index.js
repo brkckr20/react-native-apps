@@ -1,11 +1,14 @@
 import React from 'react';
+import { Text } from 'react-native';
 import DatePicker from 'react-native-date-picker'
+import { colors } from '../../assets/colors';
 import DatePickerButton from '../DatePickerButton';
 
 const DatePickerSelect = ({ open, setOpen, date, setDate }) => {
     return (
         <>
-            <DatePickerButton title="Open" onPress={() => setOpen(true)} />
+            <Text style={{ color: "gray", marginBottom: 4 }}>Tarih Seçiniz</Text>
+            <DatePickerButton title="Open" date={date} onPress={() => setOpen(true)} />
             <DatePicker
                 modal
                 open={open}
@@ -17,6 +20,7 @@ const DatePickerSelect = ({ open, setOpen, date, setDate }) => {
                 onCancel={() => {
                     setOpen(false)
                 }}
+                mode="date"
             />
         </>
     )
