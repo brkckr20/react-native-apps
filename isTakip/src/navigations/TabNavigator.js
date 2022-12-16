@@ -8,7 +8,8 @@ import { colors } from '../assets/colors';
 
 const Tab = createBottomTabNavigator();
 
-const Tabs = () => {
+const Tabs = (props) => {
+
     return (
         <Tab.Navigator screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -28,8 +29,11 @@ const Tabs = () => {
             tabBarInactiveTintColor: 'gray',
             headerShown: false,
         })}>
+
             <Tab.Screen name="GönderilenBez" component={SendProduct} />
-            <Tab.Screen name="AlinanPara" component={ReceivedMoney} />
+
+            {/* paramterte geçmek */}
+            <Tab.Screen name="AlinanPara" children={() => <ReceivedMoney params={props.route.params} />} /* component={ReceivedMoney} */ />
             <Tab.Screen name="Bakiye" component={Balance} />
         </Tab.Navigator>
     )

@@ -64,13 +64,3 @@ const SendProduct = ({ route }) => {
 
 export default SendProduct;
 
-/*
-
-[
-    
-    {"birimFiyat": "1.2", "firma": "cakir-tekstil", "id": "-NJJpuLLJlaHoiexH5A2", "metre": "2501", "user": "burak@istakip.com"}, 
-    {"birimFiyat": "1.2", "firma": "cakir-tekstil", "id": "-NJJpq2ppY17THwpYVLI", "metre": "250", "user": "burak@istakip.com"}, 
-    {"birimFiyat": "1.3", "firma": "cakir-tekstil", "id": "-NJJp_RTNn5cymk3xig0", "metre": "250", "user": "burak@istakip.com"}
-]
-
-*/

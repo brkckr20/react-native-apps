@@ -14,13 +14,17 @@ export default StyleSheet.create({
     content: {
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         padding: 4,
-        borderWidth: 1
+        borderWidth: 1,
+        borderColor: colors.border_color
     },
     contentItem: {
         color: "black",
         width: Dimensions.get("window").width / 5.5,
-        textAlign: "center"
+        textAlign: "center",
+        borderRightWidth: 1,
+        borderColor: colors.border_color,
     },
     removeBTn: {
         color: "black",
