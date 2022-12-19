@@ -8,6 +8,7 @@ export default StyleSheet.create({
     },
     infoText: {
         color: "black",
-        marginBottom: 5
+        marginBottom: 5,
+        fontSize: 16
     }
 });

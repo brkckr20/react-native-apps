@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import database from '@react-native-firebase/database';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import parsedData from '../../utils/parsedData'
-import Table from '../../components/Table';
+import Table from '../../components/ProductTable';
 
 
 const SendProduct = ({ route }) => {
@@ -28,7 +28,7 @@ const SendProduct = ({ route }) => {
         },
         onSubmit: async (values, bag) => {
             try {
-                await database().ref("cloths").push(values);
+                database().ref("cloths").push(values);
                 showMessage({
                     message: "Gönderilen bez başarıyla kaydedildi",
                     type: "success"
@@ -48,17 +48,18 @@ const SendProduct = ({ route }) => {
     }, [])
 
     return (
-        <View style={styles.sendProductContainer}>
-            <FlashMessage position="top" />
-            <Text style={styles.infoText}>Gönderilen Bez Bilgileri</Text>
-            <DatePickerSelect open={open} setOpen={setOpen} date={date} setDate={setDate} />
-            <Input placeholder="Ürün metresi" value={formik.values.metre} onChangeText={formik.handleChange("metre")} type="numeric" />
-            <Input placeholder="Ürün birim fiyat" value={formik.values.birimFiyat} onChangeText={formik.handleChange("birimFiyat")} type="numeric" />
-            <Input placeholder={name} editable={false} />
-            <Button buttonText="Kaydet" onPress={formik.handleSubmit} />
-            <Text style={{ color: "black", borderBottomWidth: 1, borderColor: "lightgray" }}>Bilgiler</Text>
+        <>
+            <View style={styles.sendProductContainer}>
+                <FlashMessage position="top" />
+                <Text style={styles.infoText}>Gönderilen Bez Bilgileri</Text>
+                <DatePickerSelect open={open} setOpen={setOpen} date={date} setDate={setDate} />
+                <Input placeholder="Ürün metresi" value={formik.values.metre} onChangeText={formik.handleChange("metre")} type="numeric" />
+                <Input placeholder="Ürün birim fiyat" value={formik.values.birimFiyat} onChangeText={formik.handleChange("birimFiyat")} type="numeric" />
+                <Input placeholder={name} editable={false} />
+                <Button buttonText="Kaydet" onPress={formik.handleSubmit} />
+            </View>
             <Table tableHeader={tableHeader} tableData={tableData} slug={slug} />
-        </View>
+        </>
     )
 }
 

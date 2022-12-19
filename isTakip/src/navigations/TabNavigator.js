@@ -34,7 +34,7 @@ const Tabs = (props) => {
 
             {/* paramterte geçmek */}
             <Tab.Screen name="AlinanPara" children={() => <ReceivedMoney params={props.route.params} />} /* component={ReceivedMoney} */ />
-            <Tab.Screen name="Bakiye" component={Balance} />
+            <Tab.Screen name="Bakiye" children={() => <Balance params={props.route.params} />} /*  component={Balance} */ />
         </Tab.Navigator>
     )
 }
