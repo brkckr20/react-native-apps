@@ -14,7 +14,7 @@ const ReceivedMoney = ({ params }) => {
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
     const [tableData, setTableData] = useState([]);
-    const tableHeader = ["Tarih", "Miktar", "Açıklama", "İşlem"];
+    const tableHeader = ["Tarih", "Açıklama", "Miktar", "İşlem"];
     const { name, slug, user } = params.params;
 
     const formik = useFormik({
