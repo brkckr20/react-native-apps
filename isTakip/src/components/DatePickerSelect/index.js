@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
 import DatePicker from 'react-native-date-picker'
-import { colors } from '../../assets/colors';
 import DatePickerButton from '../DatePickerButton';
 
 const DatePickerSelect = ({ open, setOpen, date, setDate }) => {
@@ -13,9 +12,9 @@ const DatePickerSelect = ({ open, setOpen, date, setDate }) => {
                 modal
                 open={open}
                 date={date}
-                onConfirm={(datex) => {
+                onConfirm={(date) => {
                     setOpen(false)
-                    setDate(datex);
+                    setDate(date);
                 }}
                 onCancel={() => {
                     setOpen(false)
