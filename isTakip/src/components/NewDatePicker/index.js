@@ -1,47 +1,28 @@
-import React from 'react';
-import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import React, { useState } from 'react';
+import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '../../assets/colors';
-
-// import styles from './NewDatePicker.style';
 import moment from 'moment';
 
-const PickerDate = ({ tarih, onChange }) => {
+import styles from './NewDatePicker.style';
 
-    const showMode = (currentMode) => {
-        DateTimePickerAndroid.open({
-            value: tarih,
-            onChange,
-            mode: currentMode,
-            is24Hour: true,
-        });
-    };
-    const showDatepicker = () => {
-        showMode('date');
-    };
+const PickerDate = ({ setTarih }) => {
 
+    const [date, setDate] = useState(new Date());
     return (
-        <TouchableOpacity style={styles.container} onPress={showDatepicker}>
-            <Text style={styles.text}>{moment(tarih).format('L')}</Text>
-        </TouchableOpacity>
+        <DateTimePicker
+            value={date}
+            mode="date"
+            display='default'
+            onChange={date => setDate(date)}
+        />
     )
+
+    // return (
+    //     <TouchableOpacity style={styles.container} onPress={handleDateSelect}>
+    //         {/* <Text style={styles.text}>{moment(tarih).format('L')}</Text> */}
+    //         <Text style={styles.text}>{"Tarih Seçiniz"}</Text>
+    //     </TouchableOpacity>
+    // )
 }
 export default PickerDate
-
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.bg_gray,
-        height: 50,
-        borderRadius: 10,
-        paddingLeft: 10,
-        borderWidth: 1,
-        borderColor: colors.border_color,
-        marginBottom: 12,
-        color: "black",
-        justifyContent: "center"
-    },
-    text: {
-        color: colors.gray300
-    }
-});
