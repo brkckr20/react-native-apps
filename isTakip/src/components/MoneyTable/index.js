@@ -11,6 +11,7 @@ const MoneyTable = ({ tableHeader, tableData, slug, type }) => {
     moment.updateLocale("tr", trLocale);
 
 
+
     const handleProductRemove = (productID) => {
         Alert.alert(
             "Uyarı",

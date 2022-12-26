@@ -8,7 +8,10 @@ import styles from './NewDatePicker.style';
 
 const PickerDate = ({ setTarih }) => {
 
-    const [date, setDate] = useState(new Date());
+
+
+
+    /* const [date, setDate] = useState(new Date());
     return (
         <DateTimePicker
             value={date}
@@ -16,7 +19,7 @@ const PickerDate = ({ setTarih }) => {
             display='default'
             onChange={date => setDate(date)}
         />
-    )
+    ) */
 
     // return (
     //     <TouchableOpacity style={styles.container} onPress={handleDateSelect}>

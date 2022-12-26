@@ -6,10 +6,10 @@ import trLocale from 'moment/locale/tr';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moneyFormat from '../../utils/moneyFormat'
 import database from '@react-native-firebase/database';
+import convert from '../../utils/parsedDate';
 
 const Table = ({ tableHeader, tableData, slug, type }) => {
     moment.updateLocale("tr", trLocale);
-
 
     const handleProductRemove = (productID) => {
         Alert.alert(
@@ -55,7 +55,7 @@ const Table = ({ tableHeader, tableData, slug, type }) => {
                             <Text style={styles.contentItem}>{item.metre} MT</Text>
                             <Text style={styles.contentItem}>{item.birimFiyat} TL</Text>
                             <Text style={styles.contentItem}>{moneyFormat(item.metre * item.birimFiyat)} TL</Text>
-                            <Text style={styles.contentItem}>{moment(item.tarih).format('L')}</Text>
+                            <Text style={styles.contentItem}>{convert(item.tarih)}</Text>
                             <TouchableOpacity style={styles.removeBtn} onPress={() => handleProductRemove(item.id)}>
                                 <Icon name='trash-can-outline' size={20} color="red" />
                             </TouchableOpacity>
