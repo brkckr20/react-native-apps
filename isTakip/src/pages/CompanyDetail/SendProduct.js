@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Keyboard, ScrollView } from 'react-native';
+import { Text, View, Keyboard, ScrollView, Button, TouchableOpacity } from 'react-native';
 
 import Input from '../../components/Input';
 import Buttons from '../../components/Button';
@@ -9,43 +9,39 @@ import FlashMessage, { showMessage } from 'react-native-flash-message';
 import parsedData from '../../utils/parsedData'
 import Table from '../../components/ProductTable';
 
-import DatePicker from 'react-native-modern-datepicker';
+import DatePicker from 'react-native-date-picker'
+import moment from 'moment';
 
 const SendProduct = ({ route }) => {
 
     const { name, slug, user } = route.params;
     const tableHeader = ["Metre", "Br. Fiyat", "Tutar", "Tarih", "İşlem"];
     const [tableData, setTableData] = useState([]);
-
     const [metre, setMetre] = useState("");
     const [birimFiyat, setBirimFiyat] = useState("");
-    const [selectedDate, setSelectedDate] = useState("");
+    const [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
 
     const vals = {
         metre,
         birimFiyat,
-        tarih: selectedDate,
+        tarih: date.toString(),
         firma: slug,
         user: user,
     }
 
     const handleFormSubmit = async () => {
         try {
-            try {
-                database().ref("cloths").push(vals);
-                showMessage({
-                    message: "Gönderilen bez başarıyla kaydedildi",
-                    type: "success"
-                })
-                bag.resetForm();
-                Keyboard.dismiss();
-                setMetre("");
-                setBirimFiyat("");
-                setSelectedDate("");
-            } catch (error) {
-                console.log(error.code);
-            }
+            database().ref("cloths").push(vals);
+            showMessage({
+                message: "Gönderilen bez başarıyla kaydedildi",
+                type: "success"
+            })
+            Keyboard.dismiss();
+            setMetre("");
+            setBirimFiyat("");
         } catch (error) {
+            console.log(error.code);
         }
     }
 
@@ -60,16 +56,26 @@ const SendProduct = ({ route }) => {
             <View style={styles.sendProductContainer}>
                 <FlashMessage position="top" />
                 <Text style={styles.infoText}>Gönderilen Bez Bilgileri</Text>
-                <ScrollView>
-                    <DatePicker
-                        onSelectedChange={date => setSelectedDate(date)}
-                        mode="calendar"
-                    />
-                    <Input placeholder="Ürün metresi" value={metre} onChangeText={setMetre} type="numeric" />
-                    <Input placeholder="Ürün birim fiyat" value={birimFiyat} onChangeText={setBirimFiyat} type="numeric" />
-                    <Input placeholder={name} editable={false} />
-                    <Buttons buttonText="Kaydet" onPress={handleFormSubmit} />
-                </ScrollView>
+                <TouchableOpacity title="Tarih Seç" style={styles.button} onPress={() => setOpen(true)}>
+                    <Text style={styles.buttonText}>Tarih Seç - {moment(vals.tarih.toString()).format('L')}</Text>
+                </TouchableOpacity>
+                <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    onConfirm={(date) => {
+                        setOpen(false)
+                        setDate(date)
+                    }}
+                    onCancel={() => {
+                        setOpen(false)
+                    }}
+                    mode="date"
+                />
+                <Input placeholder="Ürün metresi" value={metre} onChangeText={setMetre} type="numeric" />
+                <Input placeholder="Ürün birim fiyat" value={birimFiyat} onChangeText={setBirimFiyat} type="numeric" />
+                <Input placeholder={name} editable={false} />
+                <Buttons buttonText="Kaydet" onPress={handleFormSubmit} />
             </View>
             <Table tableHeader={tableHeader} tableData={tableData} slug={slug} />
         </>

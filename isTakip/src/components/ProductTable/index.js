@@ -55,7 +55,7 @@ const Table = ({ tableHeader, tableData, slug, type }) => {
                             <Text style={styles.contentItem}>{item.metre} MT</Text>
                             <Text style={styles.contentItem}>{item.birimFiyat} TL</Text>
                             <Text style={styles.contentItem}>{moneyFormat(item.metre * item.birimFiyat)} TL</Text>
-                            <Text style={styles.contentItem}>{convert(item.tarih)}</Text>
+                            <Text style={styles.contentItem}>{moment(item.tarih).format('L')}</Text>
                             <TouchableOpacity style={styles.removeBtn} onPress={() => handleProductRemove(item.id)}>
                                 <Icon name='trash-can-outline' size={20} color="red" />
                             </TouchableOpacity>

@@ -14,7 +14,7 @@ const Balance = ({ params }) => {
     const [loading, setLoading] = useState(false);
 
     const filteredProduct = productList.filter((i) => i.firma === slug && i.user === user);
-    const filteredMoney = receivedList.filter((i) => i.slug === slug && i.user === user);
+    const filteredMoney = receivedList.filter((i) => i.firma === slug && i.user === user);
 
     const sumSendMeter = filteredProduct.reduce((acc, object) => {
         return acc + parseFloat(object.metre)

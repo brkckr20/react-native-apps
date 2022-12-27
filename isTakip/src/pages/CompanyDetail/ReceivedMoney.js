@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Keyboard, ScrollView, Text, View } from 'react-native';
+import { Keyboard, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
@@ -7,7 +7,8 @@ import database from '@react-native-firebase/database';
 import styles from './styles';
 import parsedData from '../../utils/parsedData';
 import MoneyTable from '../../components/MoneyTable';
-import DatePicker from 'react-native-modern-datepicker';
+import DatePicker from 'react-native-date-picker';
+import moment from 'moment';
 
 const ReceivedMoney = ({ params }) => {
 
@@ -18,12 +19,13 @@ const ReceivedMoney = ({ params }) => {
 
     const [aciklama, setAciklama] = useState("");
     const [alinanMiktar, setAlinanMiktar] = useState("");
-    const [selectedDate, setSelectedDate] = useState("");
+    const [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
 
     const vals = {
         aciklama,
         alinanMiktar,
-        tarih: selectedDate,
+        tarih: date.toString(),
         firma: slug,
         user: user,
     }
@@ -37,7 +39,6 @@ const ReceivedMoney = ({ params }) => {
             })
             setAciklama("");
             setAlinanMiktar("");
-            setSelectedDate("")
             Keyboard.dismiss();
         } catch (error) {
             console.log(error.code);
@@ -56,16 +57,26 @@ const ReceivedMoney = ({ params }) => {
             <View style={styles.sendProductContainer}>
                 <FlashMessage position="top" />
                 <Text style={styles.infoText}>Alınan Para Bilgileri</Text>
-                <ScrollView>
-                    <DatePicker
-                        onSelectedChange={date => setSelectedDate(date)}
-                        mode="calendar"
-                    />
-                    <Input placeholder="Alınan Miktar" value={alinanMiktar} onChangeText={setAlinanMiktar} type="numeric" />
-                    <Input placeholder="Açıklama" value={aciklama} onChangeText={setAciklama} />
-                    <Input placeholder={name} editable={false} />
-                    <Button buttonText="Kaydet" onPress={handleFormSubmit} />
-                </ScrollView>
+                <TouchableOpacity title="Tarih Seç" style={styles.button} onPress={() => setOpen(true)}>
+                    <Text style={styles.buttonText}>Tarih Seç - {moment(vals.tarih.toString()).format('L')}</Text>
+                </TouchableOpacity>
+                <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    onConfirm={(date) => {
+                        setOpen(false)
+                        setDate(date)
+                    }}
+                    onCancel={() => {
+                        setOpen(false)
+                    }}
+                    mode="date"
+                />
+                <Input placeholder="Alınan Miktar" value={alinanMiktar} onChangeText={setAlinanMiktar} type="numeric" />
+                <Input placeholder="Açıklama" value={aciklama} onChangeText={setAciklama} />
+                <Input placeholder={name} editable={false} />
+                <Button buttonText="Kaydet" onPress={handleFormSubmit} />
             </View>
             <MoneyTable tableHeader={tableHeader} tableData={tableData} slug={slug} type="money" />
         </>

@@ -7,9 +7,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moneyFormat from '../../utils/moneyFormat'
 import database from '@react-native-firebase/database';
 
-const MoneyTable = ({ tableHeader, tableData, slug, type }) => {
+const MoneyTable = ({ tableHeader, tableData, slug }) => {
     moment.updateLocale("tr", trLocale);
-
 
 
     const handleProductRemove = (productID) => {
@@ -51,7 +50,7 @@ const MoneyTable = ({ tableHeader, tableData, slug, type }) => {
             </View>
             <ScrollView>
                 {
-                    tableData.filter(filterName => filterName.slug === slug).map((item, i) => (
+                    tableData.filter(filterName => filterName.firma === slug).map((item, i) => (
                         <View key={i} style={styles.content}>
                             <Text style={styles.contentItem}>{moment(item.tarih).format('L')}</Text>
                             <Text style={styles.contentItem}>{item.aciklama}</Text>
