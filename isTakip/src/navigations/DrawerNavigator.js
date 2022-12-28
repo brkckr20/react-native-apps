@@ -8,7 +8,7 @@ import { config } from '../config'
 import AddUser from "../pages/AddUser";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { View } from "react-native";
+import { Alert, Text, View } from "react-native";
 
 
 const Drawer = createDrawerNavigator();
@@ -27,9 +27,13 @@ const DrawerNavigator = () => {
         checkUser();
     }, [])
 
+    const handleLogOut = () => {
+        Alert.alert("Uyarı", "Uygulamadan çıkılacak.\nEmin misiniz?", [{ text: "İptal" }, { text: "Evet", onPress: () => auth().signOut() }])
+    }
+
     const Logout = () => {
         return (
-            <TouchableOpacity onPress={() => auth().signOut()} >
+            <TouchableOpacity onPress={handleLogOut} >
                 <Icon name="exit-to-app" color={colors.main_green} size={30} style={{ marginRight: 10 }} />
             </TouchableOpacity>
         )

@@ -11,12 +11,16 @@ import auth from '@react-native-firebase/auth';
 /* NAVIGATORS */
 import Tabs from './navigations/TabNavigator';
 import Root from './navigations/DrawerNavigator'
+
 const Stack = createNativeStackNavigator();
+
+import SplashScreen from 'react-native-splash-screen'
 
 const App = () => {
     const [userSession, setUserSession] = useState("");
 
     useEffect(() => {
+        SplashScreen.hide();
         auth().onAuthStateChanged((user) => {
             setUserSession(!!user)
         })

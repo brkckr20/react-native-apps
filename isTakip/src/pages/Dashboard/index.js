@@ -8,6 +8,8 @@ import database from '@react-native-firebase/database';
 import parsedData from '../../utils/parsedData';
 import { colors } from '../../assets/colors';
 
+
+
 const Dashboard = ({ navigation }) => {
 
     const [companyList, setCompanyList] = useState([]);
