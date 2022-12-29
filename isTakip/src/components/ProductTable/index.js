@@ -6,9 +6,8 @@ import trLocale from 'moment/locale/tr';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import moneyFormat from '../../utils/moneyFormat'
 import database from '@react-native-firebase/database';
-import convert from '../../utils/parsedDate';
 
-const Table = ({ tableHeader, tableData, slug, type }) => {
+const Table = ({ tableHeader, tableData, slug }) => {
     moment.updateLocale("tr", trLocale);
 
     const handleProductRemove = (productID) => {
@@ -38,6 +37,7 @@ const Table = ({ tableHeader, tableData, slug, type }) => {
         );
     }
 
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Bilgiler</Text>
@@ -50,17 +50,18 @@ const Table = ({ tableHeader, tableData, slug, type }) => {
             </View>
             <ScrollView>
                 {
-                    tableData.filter(filterName => filterName.firma === slug).map((item, i) => (
-                        <View key={i} style={styles.content}>
-                            <Text style={styles.contentItem}>{item.metre} MT</Text>
-                            <Text style={styles.contentItem}>{item.birimFiyat} TL</Text>
-                            <Text style={styles.contentItem}>{moneyFormat(item.metre * item.birimFiyat)} TL</Text>
-                            <Text style={styles.contentItem}>{moment(item.tarih).format('L')}</Text>
-                            <TouchableOpacity style={styles.removeBtn} onPress={() => handleProductRemove(item.id)}>
-                                <Icon name='trash-can-outline' size={20} color="red" />
-                            </TouchableOpacity>
-                        </View>
-                    ))
+                    tableData.filter(filterName => filterName.firma === slug)
+                        .map((item, i) => (
+                            <View key={i} style={styles.content}>
+                                <Text style={styles.contentItem}>{item.metre} MT</Text>
+                                <Text style={styles.contentItem}>{item.birimFiyat} TL</Text>
+                                <Text style={styles.contentItem}>{moneyFormat(item.metre * item.birimFiyat)} TL</Text>
+                                <Text style={styles.contentItem}>{moment(item.tarih).format('L')}</Text>
+                                <TouchableOpacity style={styles.removeBtn} onPress={() => handleProductRemove(item.id)}>
+                                    <Icon name='trash-can-outline' size={20} color="red" />
+                                </TouchableOpacity>
+                            </View>
+                        ))
                 }
             </ScrollView>
         </View>

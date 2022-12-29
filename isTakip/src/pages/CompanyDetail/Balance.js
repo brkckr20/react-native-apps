@@ -5,6 +5,7 @@ import parsedData from '../../utils/parsedData';
 import styles from './styles';
 import SummaryCard from '../../components/SummaryCard';
 import moneyFormat from '../../utils/moneyFormat'
+import Report from '../../components/Report';
 
 
 const Balance = ({ params }) => {
@@ -58,6 +59,7 @@ const Balance = ({ params }) => {
                         <SummaryCard iconName="currency-usd" variant='tile' sum={moneyFormat(sumSendMeterPrice)} title="Gönderilen Bez Tutarı" birim="TL" />
                         <SummaryCard iconName="cash" variant='darkBlue' sum={moneyFormat(sumReceivedMoney)} title="Alınan Para Tutarı" birim="TL" />
                         <SummaryCard iconName="currency-try" type="balance" balance={moneyFormat(balance)} title="Bakiye Durumu" birim="TL" />
+                        <Report />
                     </View>
                 )
             }

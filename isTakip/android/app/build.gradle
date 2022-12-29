@@ -286,6 +286,7 @@ dependencies {
     }
 
     implementation project(':react-native-splash-screen')
+    compile project(':react-native-html-to-pdf')
 }
 
 if (isNewArchitectureEnabled()) {
