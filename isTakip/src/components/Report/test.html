@@ -57,6 +57,14 @@
         .alinanpara {
             background-color: #002884;
         }
+
+        .sonuc {
+            background-color: #5DB075;
+        }
+
+        .sonuc-red {
+            background-color: #f53b57;
+        }
     </style>
     <title>Rapor</title>
 </head>
@@ -68,22 +76,42 @@
         <div class="group">
             <div class="card bez">
                 <h1 class="baslik">Gönderilen Bez Miktarı</h1>
-                <p>10 metre</p>
+                <p>${sumSendMeter} metre</p>
             </div>
             <div class="card beztutar">
-                <h1 class="baslik">Gönderilen Bez Miktarı</h1>
-                <p>10 metre</p>
+                <h1 class="baslik">Gönderilen Bez Tutarı</h1>
+                <p>${sumSendMeterPrice} TL</p>
             </div>
             <div class="card alinanpara">
-                <h1 class="baslik">Gönderilen Bez Miktarı</h1>
-                <p>10 metre</p>
+                <h1 class="baslik">Alınan Para Tutarı</h1>
+                <p>${sumReceivedMoney} TL</p>
             </div>
-            <div class="card">
-                <h1 class="baslik">Gönderilen Bez Miktarı</h1>
-                <p>10 metre</p>
+            <div class="card ${balance >= 0 ? 'sonuc' : 'sonuc-red'}">
+                <h1 class="baslik">Bakiye Durumu</h1>
+                <p>${balance} TL</p>
             </div>
         </div>
-
+        <div class="group">
+            <table style="border: 1px solid #ccc;">
+                <h2>İşlem Bilgileri</h2>
+                <thead style="background-color: red;">
+                    <tr>
+                        <td>Metre</td>
+                        <td>Br. Fiyat</td>
+                        <td>Tutar</td>
+                        <td>Tarih</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 MT</td>
+                        <td>1 MT</td>
+                        <td>1 MT</td>
+                        <td>1 MT</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 

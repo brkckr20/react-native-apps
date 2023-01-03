@@ -59,7 +59,12 @@ const Balance = ({ params }) => {
                         <SummaryCard iconName="currency-usd" variant='tile' sum={moneyFormat(sumSendMeterPrice)} title="Gönderilen Bez Tutarı" birim="TL" />
                         <SummaryCard iconName="cash" variant='darkBlue' sum={moneyFormat(sumReceivedMoney)} title="Alınan Para Tutarı" birim="TL" />
                         <SummaryCard iconName="currency-try" type="balance" balance={moneyFormat(balance)} title="Bakiye Durumu" birim="TL" />
-                        <Report />
+                        <Report
+                            sumSendMeter={sumSendMeter}
+                            sumSendMeterPrice={moneyFormat(sumSendMeterPrice)}
+                            sumReceivedMoney={moneyFormat(sumReceivedMoney)}
+                            balance={moneyFormat(balance)}
+                        />
                     </View>
                 )
             }
