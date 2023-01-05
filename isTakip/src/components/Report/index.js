@@ -6,7 +6,7 @@ import FileViewer from 'react-native-file-viewer';
 import styles from './Report.style';
 
 
-const Report = ({ sumSendMeter, sumSendMeterPrice, sumReceivedMoney, balance, filteredProduct }) => {
+const Report = ({ sumSendMeter, sumSendMeterPrice, sumReceivedMoney, balance, filteredProduct, name }) => {
 
     let a = filteredProduct.forEach(i => {
         console.log(`
@@ -18,6 +18,7 @@ const Report = ({ sumSendMeter, sumSendMeterPrice, sumReceivedMoney, balance, fi
         </tr>
         `);
     })
+
 
     const html = `
     <!DOCTYPE html>
@@ -87,24 +88,13 @@ const Report = ({ sumSendMeter, sumSendMeterPrice, sumReceivedMoney, balance, fi
             .sonuc-red {
                 background-color: #f53b57;
             }
-    
-            .table {
-                border: 1px solid #A0AEC0;
-                width: 100%;
-                text-align: center;
-            }
-    
-            .table thead tr {
-                color: white;
-            }
         </style>
         <title>Rapor</title>
     </head>
-    
     <body>
         <div class="container">
             <h1 class="title">İşlem Özet Tablosu</h1>
-            <h2>Bakiye Bilgileri</h2>
+            <h2>Bakiye Bilgileri (${name})</h2>
             <div class="group">
                 <div class="card bez">
                     <h1 class="baslik">Gönderilen Bez Miktarı</h1>
@@ -124,49 +114,7 @@ const Report = ({ sumSendMeter, sumSendMeterPrice, sumReceivedMoney, balance, fi
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h2>İşlem Tablosu</h2>
-            <div class="group">
-                <table class="table">
-                    <thead>
-                        <tr style="background-color: #A0AEC0;">
-                            <td>Metre</td>
-                            <td>Br. Fiyat</td>
-                            <td>Tutar</td>
-                            <td>Tarih</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    ${filteredProduct.forEach(i => {
-        `<tr>
-                            <td style="color : pink;">lorem</td>
-                            <td>2</td>
-                            <td>120 tl</td>
-                            <td>15.06.1992</td>
-                        </tr>`
-    })}
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>120 tl</td>
-                            <td>15.06.1992</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Metre</td>
-                            <td>Br. Fiyat</td>
-                            <td>Tutar</td>
-                            <td>Tarih</td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
     </body>
-    
     </html>`;
 
 

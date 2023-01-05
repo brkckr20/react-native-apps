@@ -65,6 +65,7 @@ const Balance = ({ params }) => {
                             sumReceivedMoney={moneyFormat(sumReceivedMoney)}
                             balance={moneyFormat(balance)}
                             filteredProduct={filteredProduct}
+                            name={name}
                         />
                     </View>
                 )
