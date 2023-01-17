@@ -7,7 +7,7 @@ import Card from './Card';
 const Home = ({ navigation }) => {
 
     const handleNavigate = () => {
-        // navigation.navigate('Details')
+        navigation.navigate('Kurumsal')
     }
 
     return (
