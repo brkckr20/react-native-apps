@@ -4,6 +4,8 @@ import colors from '../../../assets/colors';
 import fontNames from '../../../assets/fontNames';
 import Card from './Card';
 
+import styles from './Home.style'
+
 const Home = ({ navigation }) => {
 
     const handleNavigate = () => {
@@ -13,24 +15,23 @@ const Home = ({ navigation }) => {
     return (
         <>
             <StatusBar backgroundColor={colors.main_color} />
-            <View style={{ flex: 1, backgroundColor: colors.main_color }}>
-                <View style={{ flex: 1, paddingHorizontal: 10, justifyContent: "center" }}>
-                    <Text style={{ color: "white", fontSize: 50, fontFamily: fontNames.firaSemibold }}>Nakosan</Text>
-                    <Text style={{ color: "white", fontSize: 18, fontFamily: fontNames.firaRegular }}>Yenilikçi ruhumuzla kaliteli hizmet</Text>
+            <View style={styles.container}>
+                <View style={styles.top}>
+                    <Text style={styles.topTitle}>Nakosan</Text>
+                    <Text style={styles.topSlogan}>Yenilikçi ruhumuzla kaliteli hizmet</Text>
                 </View>
-                <View style={{ flex: 3, backgroundColor: colors.main_color }}>
-                    <View style={{ flex: 1, backgroundColor: colors.secondary_color, borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 10 }}>
-                        <View style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", justifyContent: "space-between", marginTop: -35 }}>
+                <View style={styles.content}>
+                    <View style={styles.contentWrapper}>
+                        <View style={styles.contentCardWrapper}>
                             <Card image="https://cdn-icons-png.flaticon.com/512/3051/3051181.png" title="Kurumsal" onPress={handleNavigate} />
                             <Card image="https://cdn-icons-png.flaticon.com/128/9365/9365944.png" title="Zaman Yolculuğu" />
                             <Card image="https://cdn-icons-png.flaticon.com/512/9326/9326710.png" title="Neler Yapıyoruz?" />
                             <Card image="https://cdn-icons-png.flaticon.com/512/9376/9376733.png" title="İletişim" />
                         </View>
-                        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                            <Image style={{ width: 300, height: 172 }} source={{ uri: 'https://www.nakosan.com.tr/wp-content/uploads/2022/11/Nakosan-Logo.png' }} />
+                        <View style={styles.contentBottom}>
+                            <Image style={styles.contentBottomImage} source={{ uri: 'https://www.nakosan.com.tr/wp-content/uploads/2022/11/Nakosan-Logo.png' }} />
                         </View>
                     </View>
-
                 </View>
             </View>
         </>

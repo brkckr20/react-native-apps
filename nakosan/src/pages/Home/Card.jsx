@@ -2,28 +2,16 @@ import React from 'react';
 import { View, Text, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import colors from '../../../assets/colors';
 import fontNames from '../../../assets/fontNames';
+import styles from './Home.style'
 
 const Card = ({ image, title, onPress }) => {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
-            <View
-                style={{
-                    backgroundColor: "white", width: Dimensions.get("window").width / 2.5, alignItems: "center", padding: 10, margin: 10, borderRadius: 10, shadowColor: "#000",
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 0,
-                        height: 1,
-                    },
-                    shadowOpacity: 0.22,
-                    shadowRadius: 2.22,
-
-                    elevation: 3,
-                }}
-            >
+            <View style={styles.card}>
                 <View>
-                    <Image source={{ uri: image }} style={{ width: 120, height: 120 }} />
+                    <Image source={{ uri: image }} style={styles.cardImage} />
                 </View>
-                <Text style={{ color: colors.main_color, fontFamily: fontNames.firaSemibold, fontSize: 15, marginTop: 12 }}>{title}</Text>
+                <Text style={styles.cardTitle}>{title}</Text>
             </View>
         </TouchableWithoutFeedback>
     )
