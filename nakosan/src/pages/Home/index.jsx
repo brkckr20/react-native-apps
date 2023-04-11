@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StatusBar, Image, Dimensions } from 'react-native';
+import { View, Text, StatusBar, Image } from 'react-native';
 import colors from '../../../assets/colors';
-import fontNames from '../../../assets/fontNames';
 import Card from './Card';
 
 import styles from './Home.style'

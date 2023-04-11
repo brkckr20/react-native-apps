@@ -1,7 +1,5 @@
 import React from 'react';
-import { View, Text, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import colors from '../../../assets/colors';
-import fontNames from '../../../assets/fontNames';
+import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import styles from './Home.style'
 
 const Card = ({ image, title, onPress }) => {

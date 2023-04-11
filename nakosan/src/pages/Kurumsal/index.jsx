@@ -2,6 +2,10 @@ import React from 'react';
 import { View, Text, Image, Dimensions, ScrollView } from 'react-native';
 import colors from '../../../assets/colors';
 import fontNames from '../../../assets/fontNames';
+import YouTube from 'react-native-youtube';
+
+
+const VIDEO_ID = 'fUYh6pEsNsI';
 
 const Hakkimizda = () => {
     return (
@@ -28,6 +32,14 @@ const Hakkimizda = () => {
                 <Text style={{ fontSize: 16, color: "#7e7972", marginBottom: 20 }}>
                     Nakosan, sürekli büyürken zanaatkarlık ruhunu korudu ve bu ruhla başarı çizgisini arttırarak uluslararası ticarette aldığı etkin rolle Türkiye’nin heyecan veren girişimci şirketler arasında yerini aldı.
                 </Text>
+            </View>
+            <View>
+                <YouTube
+                    videoId={VIDEO_ID}
+                    play={false}
+                    controls={1}
+                    style={{ alignSelf: 'stretch', height: 300 }}
+                />
             </View>
         </ScrollView>
     )
