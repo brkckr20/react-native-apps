@@ -3,5 +3,6 @@ export const colors = {
     fusionRed: "#fc5c65",
     reptileGreen: "#26de81",
     white: "#ffffff",
-    turuncu : "#e68a00",
+    turuncu: "#e68a00",
+    mavi: "#130f40",
 }
